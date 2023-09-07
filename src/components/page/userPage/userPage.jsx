@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import api from "../api";
-import QualitiesList from "../components/qualitiesList";
+import api from "../../../api";
+import Qualities from "../../ui/qualities";
 
 const UserPage = ({ userId }) => {
     const [user, setUser] = useState();
     const history = useHistory();
 
     const handleClick = () => {
-        history.push("/users");
-    };
+        history.push(history.location.pathname + "/edit");
+    }; //
 
     useEffect(() => {
         api.users.getById(userId).then((user) => {
-            // console.log(user);
+            console.log(user);
             setUser(user);
         });
     }, []);
@@ -25,15 +25,15 @@ const UserPage = ({ userId }) => {
         <div>
             <h2>Имя: {user.name}</h2>
             <p>Профессия: {user.profession.name}</p>
-            <QualitiesList qualities={user.qualities} />
+            <Qualities qualities={user.qualities} />
             <p>Встретился раз: {user.completedMeetings}</p>
             <p>Рейтинг: {user.rate}</p>
             <button
                 type="button"
-                className="btn btn-light"
+                className="btn btn-danger btn-sm m-2"
                 onClick={handleClick}
             >
-                Все пользователи
+                Изменить
             </button>
         </div>
     );

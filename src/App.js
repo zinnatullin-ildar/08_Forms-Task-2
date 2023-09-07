@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import NavBar from "./components/navBar";
+import NavBar from "./components/ui/navBar";
 import Users from "./layouts/users";
 import MainPage from "./layouts/main";
 import Login from "./layouts/login";
@@ -10,8 +10,8 @@ const App = () => {
             <NavBar />
             <Switch>
                 <Route exact path="/" component={MainPage} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/users/:userId?" component={Users} />
+                <Route exact path="/login/:type?" component={Login} />
+                <Route exact path="/users/:userId?/:edit?" component={Users} />
                 <Redirect to="/" />
             </Switch>
         </div>

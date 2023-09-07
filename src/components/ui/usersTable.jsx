@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import TableHeader from "./tableHeader";
-import TableBody from "./tableBody";
-import Bookmark from "./bookmark";
-import QualitiesList from "./qualitiesList";
-import Table from "./table";
+import TableHeader from "../common/table/tableHeader";
+import TableBody from "../common/table/tableBody";
+import Bookmark from "../common/bookmark";
+import Qualities from "../ui/qualities";
+import Table from "../common/table";
 import PropTypes from "prop-types";
 
 const UserTable = ({
@@ -23,7 +23,7 @@ const UserTable = ({
         }, // ссылка перехода на страницу юзера
         qualities: {
             name: "Качества",
-            component: (user) => <QualitiesList qualities={user.qualities} />
+            component: (user) => <Qualities qualities={user.qualities} />
         },
         professions: { path: "profession.name", name: "Профессия" },
         completedMeetings: {

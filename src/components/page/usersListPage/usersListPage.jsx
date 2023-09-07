@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import api from "../api";
+import api from "../../../api";
 import _ from "lodash";
-import { paginate } from "../utils/paginate";
-import Pagination from "./pagination";
-import UserTable from "./usersTable";
-import GroupList from "./groupList";
-import SearchStatus from "./searchStatus";
+import { paginate } from "../../../utils/paginate";
+import Pagination from "../../common/pagination";
+import UserTable from "../../ui/usersTable";
+import GroupList from "../../common/groupList";
+import SearchStatus from "../../ui/searchStatus";
 
-const UsersList = () => {
+const UsersListPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfession] = useState([]);
     const [search, setSearch] = useState("");
@@ -67,22 +67,6 @@ const UsersList = () => {
         setSortBy(item);
     };
 
-    // useEffect(() => {
-    //     if (users) {
-    //         const filteredUsers = selectedProf
-    //             ? users.filter(
-    //                   (user) =>
-    //                       JSON.stringify(user.profession) ===
-    //                       JSON.stringify(selectedProf)
-    //               )
-    //             : users;
-    //         const usersCrop = paginate(filteredUsers, currentPage, pageSize);
-    //         if (usersCrop.length === 0 && currentPage > 1) {
-    //             setCurrentPage(currentPage - 1);
-    //         }
-    //     }
-    // }, [users]);
-
     if (users) {
         const filteredUsers = search
             ? users.filter((user) =>
@@ -128,6 +112,7 @@ const UsersList = () => {
                 <div className="d-flex flex-column">
                     <SearchStatus length={count} />
                     <input
+                        className="w-50"
                         type="text"
                         name="search"
                         placeholder="Search..."
@@ -159,8 +144,8 @@ const UsersList = () => {
     return "Loading...";
 };
 
-UsersList.propTypes = {
+UsersListPage.propTypes = {
     users: PropTypes.array
 };
 
-export default UsersList;
+export default UsersListPage;

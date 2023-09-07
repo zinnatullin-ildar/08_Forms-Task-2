@@ -4,7 +4,7 @@ import PropTypes from "prop-types"; // сниппет impt
 
 const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
     const pageCount = Math.ceil(itemsCount / pageSize); // количество страниц, округляем в большую сторону
-    if (pageCount === 1) return null; // если pageSize больше количества user в хранилище, то ничего не выводим
+    if (pageCount === 1) return null; // если pageSize больше количества user в хранилище, то нумерацию не выводим
 
     const pages = _.range(1, pageCount + 1); // получение начального массива
     // console.log(pages);

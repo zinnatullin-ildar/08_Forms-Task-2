@@ -1,13 +1,27 @@
 import { useParams } from "react-router-dom";
-import UsersList from "../components/usersList";
-import UserPage from "../components/userPage";
+import UsersListPage from "../components/page/usersListPage";
+import UserPage from "../components/page/userPage";
+import Edit from "../components/ui/edit";
 
 const Users = () => {
     const params = useParams();
-    const { userId } = params;
+    const { userId, edit } = params;
 
-    return <>{userId ? <UserPage userId={userId} /> : <UsersList />}</>;
-    // если выбран юзер по id, рендерим карточку юзера, если нет, то весь список юзеров
+    return (
+        <>
+            {userId ? (
+                edit ? (
+                    <Edit />
+                ) : (
+                    <UserPage userId={userId} />
+                )
+            ) : (
+                <UsersListPage />
+            )}
+        </>
+    );
+    // если выбран юзер по id, то если есть параметр edit, то рендерим форму редактирования юзера, если нет, то карточку юзера
+    // если юзер по id не выбран, рендерим список юзеров
 };
 
 export default Users;

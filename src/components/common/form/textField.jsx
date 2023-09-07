@@ -2,7 +2,16 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const TextField = ({ label, type, name, value, onChange, error }) => {
+    // получаем и деструктурируем props
+
     const [showPassword, setShowPassword] = useState(false);
+
+    const handleChange = ({ target }) => {
+        onChange({ name: target.name, value: target.value });
+    };
+    // привели результирующие данные компонентов полей к одному формату (чтобы у всех компонентов полей в onChange()
+    // из props попадал объект одной и той же структуры - с ключами name и value) и таким образом, в родителе будет
+    // не нужно обрабатывать каждое поле индивидуально, все имеют одну и ту же структуру
 
     const toggleShowPassword = () => {
         setShowPassword((prevState) => !prevState);
@@ -20,8 +29,8 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
                     type={showPassword ? "text" : type}
                     name={name}
                     value={value}
-                    onChange={onChange}
                     className={getInputClasses()}
+                    onChange={handleChange}
                 />
                 {type === "password" && (
                     <button
