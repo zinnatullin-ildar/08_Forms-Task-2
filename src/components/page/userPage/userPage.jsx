@@ -9,12 +9,12 @@ const UserPage = ({ userId }) => {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push(history.location.pathname + "/edit");
+        history.push(history.location.pathname + "/edit"); // к текущему адресу добавляем edit
     }; //
 
     useEffect(() => {
         api.users.getById(userId).then((user) => {
-            console.log(user);
+            // console.log(user);
             setUser(user);
         });
     }, []);
